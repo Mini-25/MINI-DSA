@@ -52,6 +52,16 @@ class LinkedList{
             delete del;
         }
     }
+    void insertAfter(Node* node, int val) {
+        if (node == nullptr) {
+            cout << "Given previous node cannot be NULL" << endl;
+            return;
+        }
+        Node* newNode = new Node;
+        newNode->val = val;
+        newNode->next = node->next;
+        node->next = newNode;
+    }
     ~LinkedList(){
         delAll();
     }
