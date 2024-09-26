@@ -1,9 +1,9 @@
 #include <iostream>
-#include "binaryTree.h"
+#include "binarySearchTree.h"
 using namespace std;
 
 int main() {
-    BinaryTree tree;
+    BinarySearchTree tree;
 
     // Inserting the nodes into the tree
     tree.insert(50);
