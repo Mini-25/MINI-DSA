@@ -1,7 +1,7 @@
-#ifndef BINARY_TREE_ADT_H
-#define BINARY_TREE_ADT_H
+#ifndef BINARY_SEARCH_TREE_ADT_H
+#define BINARY_SEARCH_TREE_ADT_H
 
-class BinaryTreeADT
+class BinarySearchTreeADT
 {
 public:
     virtual void insert(int value) = 0;
