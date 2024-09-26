@@ -1,7 +1,7 @@
-#ifndef BINARY_TREE_H
-#define BINARY_TREE_H
+#ifndef BINARY_SEARCH_TREE_H
+#define BINARY_SEARCH_TREE_H
 
-#include"binaryTreeADT.h"
+#include"binarySearchTreeADT.h"
 using namespace std;
 struct Node
 {
@@ -11,7 +11,7 @@ struct Node
     Node(int value) : data(value), left(nullptr), right(nullptr) {}
 };
 
-class BinaryTree: public BinaryTreeADT{
+class BinarySearchTree: public BinarySearchTreeADT{
     private:
         Node* root;
 
@@ -43,7 +43,7 @@ class BinaryTree: public BinaryTreeADT{
         }
     
     public:
-        BinaryTree(): root(nullptr){}
+        BinarySearchTree(): root(nullptr){}
 
         void insert(int value) override{
             Node* newNode = new Node(value);
