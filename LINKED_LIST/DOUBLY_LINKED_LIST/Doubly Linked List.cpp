@@ -1,77 +1,132 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-struct Node{
-    int data;
-    Node* next;
-    Node* prev;
-    Node(int val) : data(val), prev(nullptr), next(nullptr) {}
+
+// Node class definition
+struct Node {
+    int data;      
+    Node* next;    
+    Node* prev;    
+    Node(int value) : data(value), next(nullptr), prev(nullptr){}
 };
 
-class DoublyLinkedList{
-    Node* head;
-    Node* tail;
+// DoublyLinkedList class definition
+class DoublyLinkedList {
+private:
+    Node* head; 
+    Node* tail; 
 
-    public:
-        DoublyLinkedList(): head(nullptr), tail(nullptr){}
+public:
+    // Constructor to initialize the head and tail to nullptr
+    DoublyLinkedList() head(nullptr), tail(nullptr){}
 
-        void insert(int val) {
-            Node* newNode = new Node(val);
-
-            if (head == nullptr) {
-                head = newNode;
-                tail = newNode;
-            } 
-            else 
-            {
-                tail->next = newNode;
-                newNode->prev = tail;
-                tail = newNode;
-            }
+    // Function to insert a node at the beginning of the list
+    void insertAtBeginning(int value) {
+        Node* newNode = new Node(value);
+        if (head == nullptr) {
+            head = tail = newNode;
+        } else {
+            newNode->next = head;
+            head->prev = newNode;
+            head = newNode;
         }
+    }
 
-        void remove() {
-            if (head == nullptr) {
-                cout << "Error: List is empty, cannot remove." << endl;
-                return;
-            }
+    // Function to insert a node at the end of the list
+    void insertAtEnd(int value) {
+        Node* newNode = new Node(value);
+        if (tail == nullptr) {
+            head = tail = newNode;
+        } else {
+            newNode->prev = tail;
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
 
-            if (head->next == nullptr) {
-                // Only one node in the list
-                delete head;
-                head = nullptr;
-                tail = nullptr;
-            }
-            else if (head == tail) {
-                // Last node in the list
-                delete tail;
-                head->prev = nullptr;
-                tail = head;
-            }
-            else {
-                // More than one node in the list
-                Node* temp = tail;
-                tail = tail->prev;
-                tail->next = nullptr;
-                delete temp;
-            }
+    // Function to delete the first node of the list
+    void deleteFromBeginning() {
+        if (head == nullptr) {
+            cout << "List is empty, nothing to delete." << endl;
+            return;
         }
-        void print(){
-            Node* temp = head;
-            while (temp) {
-                cout << temp->data << " ";
-                temp = temp->next;
-            }
-            cout << endl;   
+        Node* temp = head;
+        head = head->next;
+        if (head != nullptr) {
+            head->prev = nullptr;
+        } else {
+            tail = nullptr;
         }
+        delete temp;
+    }
+
+    // Function to delete the last node of the list
+    void deleteFromEnd() {
+        if (tail == nullptr) {
+            cout << "List is empty, nothing to delete." << endl;
+            return;
+        }
+        Node* temp = tail;
+        tail = tail->prev;
+        if (tail != nullptr) {
+            tail->next = nullptr;
+        } else {
+            head = nullptr;
+        }
+        delete temp;
+    }
+
+    // Function to display the list forward
+    void displayForward() {
+        if (head == nullptr) {
+            cout << "The list is empty." << endl;
+            return;
+        }
+        Node* temp = head;
+        while (temp != nullptr) {
+            cout << temp->data << " <-> ";
+            temp = temp->next;
+        }
+        cout << "nullptr" << endl;
+    }
+
+    // Function to display the list backward
+    void displayBackward() {
+        if (tail == nullptr) {
+            cout << "The list is empty." << endl;
+            return;
+        }
+        Node* temp = tail;
+        while (temp != nullptr) {
+            cout << temp->data << " <-> ";
+            temp = temp->prev;
+        }
+        cout << "nullptr" << endl;
+    }
 };
 
-int main(){
+int main() {
     DoublyLinkedList list;
-    list.insert(1);
-    list.insert(2);
-    list.insert(3);
-    list.print();
-    list.remove();
-    list.print();
+
+    // Insert nodes
+    list.insertAtBeginning(10);
+    list.insertAtBeginning(5);
+    list.insertAtEnd(15);
+    list.insertAtEnd(20);
+
+    // Display the list
+    cout << "Doubly Linked List after insertions (forward): ";
+    list.displayForward();
+    cout << "Doubly Linked List after insertions (backward): ";
+    list.displayBackward();
+
+    // Delete nodes
+    list.deleteFromBeginning();
+    cout << "Doubly Linked List after deleting from the beginning: ";
+    list.displayForward();
+
+    list.deleteFromEnd();
+    cout << "Doubly Linked List after deleting from the end: ";
+    list.displayForward();
+
     return 0;
 }
