@@ -17,7 +17,7 @@ private:
 
 public:
     // Constructor to initialize the head and tail to nullptr
-    DoublyLinkedList() head(nullptr), tail(nullptr){}
+    DoublyLinkedList(): head(nullptr), tail(nullptr){}
 
     // Function to insert a node at the beginning of the list
     void insertAtBeginning(int value) {
