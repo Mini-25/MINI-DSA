@@ -1,2 +1,326 @@
-<h3><strong>Queue Data Structure</strong></h3><h4><strong>1. Concept of a Queue:</strong></h4><p>A <strong>queue</strong> is a linear data structure that follows the <strong>First In, First Out (FIFO)</strong> principle. This means that the first element added to the queue will be the first one to be removed. A good real-world analogy is a line of people waiting to buy tickets – the person who joins the line first gets served first, while the person who joins last will wait until their turn comes.</p><ul><li><strong>FIFO (First In, First Out)</strong>: The element that is inserted first is the one removed first.</li></ul><h4><strong>2. Key Operations of a Queue:</strong></h4><p>A queue typically supports the following operations:</p><ul><li><strong>Enqueue</strong>: Add an element to the back (rear) of the queue.</li><li><strong>Dequeue</strong>: Remove the front element from the queue.</li><li><strong>Front</strong>: Peek at the front element without removing it.</li><li><strong>IsEmpty</strong>: Check if the queue is empty.</li><li><strong>IsFull</strong>: Check if the queue has reached its maximum capacity (in a fixed-size queue).</li><li><strong>Size</strong>: Get the number of elements currently in the queue.</li></ul><p>These operations allow us to efficiently manage data when we need a structure that processes items in the order they were added.</p><h4><strong>3. How a Queue Works:</strong></h4><p>Here’s how the basic operations work on a queue:</p><ul><li><p><strong>Enqueue Operation</strong>:</p><ul><li>Add an element to the rear of the queue.</li><li>Example: If the queue has [10, 20, 30], and we enqueue <code>40</code>, the new queue becomes [10, 20, 30, 40].</li></ul></li><li><p><strong>Dequeue Operation</strong>:</p><ul><li>Remove the front element from the queue.</li><li>Example: If the queue has [10, 20, 30, 40], and we dequeue, the front element <code>10</code> is removed, and the queue becomes [20, 30, 40].</li></ul></li><li><p><strong>Front Operation</strong>:</p><ul><li>Look at the front element without removing it.</li><li>Example: If the queue is [20, 30, 40], <code>front()</code> would return <code>20</code>.</li></ul></li></ul><h4><strong>4. Real-World Examples of Queues:</strong></h4><ol><li><strong>Customer Service Lines</strong>:<ul><li>In a physical store or an online help desk, customers are served in the order they arrived. The first person in line is the first to be helped, which is the essence of the queue’s FIFO property.</li></ul></li><li><strong>Print Queue</strong>:<ul><li>In a shared office, multiple people may send print jobs to a single printer. The print jobs are processed in the order they are received – first come, first served.</li></ul></li><li><strong>Task Scheduling in Operating Systems</strong>:<ul><li>Operating systems often use queues to manage tasks. For instance, processes waiting to be executed by the CPU are placed in a queue, ensuring that they are processed in the order they were added (FIFO).</li></ul></li><li><strong>Ticketing System</strong>:<ul><li>In a movie theater or event, tickets are often processed in the order they are requested. The first person to request a ticket gets it before others.</li></ul></li></ol><h4><strong>5. Advantages of Using a Queue:</strong></h4><ul><li><strong>Fairness in Processing</strong>: Queues ensure that tasks or requests are processed in the order they arrive. This fairness is crucial in many real-world systems, such as customer service, scheduling, and task management.</li><li><strong>Efficient for Sequential Tasks</strong>: Queues are ideal for scenarios where tasks or elements need to be handled one after the other, without skipping or reordering.</li></ul><h4><strong>6. Limitations of a Queue:</strong></h4><ul><li><strong>Limited Access</strong>: In a queue, you can only access the front or rear element. If you need to access an element in the middle, you must first dequeue all elements before it.</li><li><strong>Fixed Size (in fixed-size queues)</strong>: In some implementations, queues have a fixed maximum size, limiting the number of elements they can store.</li></ul><h4><strong>7. Types of Queues:</strong></h4><ul><li><strong>Simple Queue (Linear Queue)</strong>: A queue where elements are added at the rear and removed from the front. This type of queue can lead to wasted space if the front pointer keeps advancing.</li><li><strong>Circular Queue</strong>: A queue where the last position is connected back to the first position, forming a circle. This allows better utilization of space and avoids the wasted space problem in simple queues.</li><li><strong>Priority Queue</strong>: A specialized type of queue where elements are dequeued based on priority rather than their order of insertion. High-priority elements are dequeued before lower-priority ones.</li><li><strong>Double-Ended Queue (Deque)</strong>: A queue where elements can be added or removed from both ends (front and rear).</li></ul><h4><strong>8. Real-World Use Cases for Queues:</strong></h4><ul><li><strong>CPU Scheduling</strong>:<ul><li>In multi-tasking operating systems, processes that need CPU time are placed in a queue. The operating system picks the process at the front of the queue, processes it for a short time, and either completes or moves it back to the queue.</li></ul></li><li><strong>Breadth-First Search (BFS) in Graphs</strong>:<ul><li>Queues are used in the BFS algorithm to explore nodes level by level. Nodes that are closer to the starting node are visited first, and the queue helps keep track of the next nodes to visit.</li></ul></li><li><strong>Network Data Buffers</strong>:<ul><li>When data is sent across a network, it often passes through a buffer queue. Data packets are received and processed in the order they arrive, ensuring that packets are processed in the correct sequence.</li></ul></li><li><strong>Job Scheduling in Print Spoolers</strong>:<ul><li>In environments with multiple users, print jobs are queued and handled sequentially. Each new job is enqueued, and the printer dequeues the next job for printing.</li></ul></li></ul><h4><strong>9. Other Important Concepts Related to Queues:</strong></h4><ul><li><p><strong>Queue Overflow</strong>: This occurs when you try to enqueue an element into a full queue. In fixed-size queues, this can happen if all positions are occupied.</p></li><li><p><strong>Queue Underflow</strong>: This occurs when you try to dequeue an element from an empty queue. It’s important to check if the queue is empty before attempting to dequeue.</p></li><li><p><strong>Circular Queue (Efficient Space Usage)</strong>:</p><ul><li>In a simple queue, even though elements are dequeued from the front, the queue doesn’t reuse the space that becomes available at the front. This can lead to wasted memory. Circular queues solve this issue by looping back and reusing available space.</li></ul></li></ul><hr><h3><strong>Summary:</strong></h3><ul><li><strong>Queue</strong>: A linear data structure that follows the FIFO (First In, First Out) principle.</li><li><strong>Operations</strong>: Enqueue (add element to rear), Dequeue (remove element from front), Front (peek at the front element), IsEmpty, IsFull, and Size.</li><li><strong>Real-World Uses</strong>: Customer service lines, task scheduling, BFS in graphs, network buffers, and print job handling.</li><li><strong>Types</strong>: Simple (linear) queues, circular queues, priority queues, and double-ended queues (deques).</li></ul>
+# Comprehensive Queue Documentation
 
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Data Structure Overview](#data-structure-overview)
+3. [Detailed Implementation Explanation](#detailed-implementation-explanation)
+4. [Time and Space Complexity Analysis](#time-and-space-complexity-analysis)
+5. [Code Implementation](#code-implementation)
+6. [Step-by-Step Code Breakdown](#step-by-step-code-breakdown)
+7. [Example Run with Visualization](#example-run-with-visualization)
+8. [Common Pitfalls and Tips](#common-pitfalls-and-tips)
+9. [Variants of Queue](#variants-of-queue)
+10. [Real-world Applications](#real-world-applications)
+11. [Practice Problems](#practice-problems)
+12. [Conclusion](#conclusion)
+
+## 1. Introduction
+
+A Queue is a linear data structure that follows the First-In-First-Out (FIFO) principle. It is an abstract data type with a bounded (predefined) capacity. It allows adding elements to the rear and removing elements from the front. The first element added to the queue will be the first one to be removed.
+
+### Key Concepts:
+- Elements are added to the rear of the queue (enqueue operation)
+- Elements are removed from the front of the queue (dequeue operation)
+- Only the front element is accessible for removal at any given time
+- Follows the First-In-First-Out (FIFO) principle
+
+## 2. Data Structure Overview
+
+The Queue implementation consists of:
+
+1. **Array**: To store the elements of the queue.
+2. **Front**: An integer to keep track of the index of the front element.
+3. **Rear**: An integer to keep track of the index of the rear element.
+4. **Capacity**: The maximum number of elements the queue can hold.
+5. **Count**: The current number of elements in the queue.
+
+Key operations include:
+- Enqueue: Add an element to the rear of the queue
+- Dequeue: Remove the front element from the queue
+- Peek: View the front element without removing it
+- isEmpty: Check if the queue is empty
+- isFull: Check if the queue is full
+
+## 3. Detailed Implementation Explanation
+
+### Queue Class
+```cpp
+class Queue {
+private:
+    int* arr;
+    int front, rear, capacity, count;
+public:
+    Queue(int size = 5);
+    bool enqueue(int value);
+    bool dequeue();
+    int peek() const;
+    bool isEmpty() const;
+    bool isFull() const;
+    int size() const;
+    void display() const;
+    ~Queue();
+};
+```
+- `arr`: Dynamic array to store queue elements
+- `front`: Index of the front element
+- `rear`: Index of the rear element
+- `capacity`: Maximum number of elements the queue can hold
+- `count`: Current number of elements in the queue
+- Constructor initializes the queue with a given capacity (default 5)
+- Destructor frees the dynamically allocated memory
+
+### Key Operations
+
+1. **Enqueue**:
+   - Check if the queue is full
+   - If not full, add the new element at the rear and update rear and count
+   - Return true if successful, false if queue overflow
+
+2. **Dequeue**:
+   - Check if the queue is empty
+   - If not empty, update front and decrease count
+   - Return true if successful, false if queue underflow
+
+3. **Peek**:
+   - Check if the queue is empty
+   - If not empty, return the element at the front
+   - Return -1 if queue is empty (assuming -1 is not a valid queue element)
+
+4. **isEmpty**:
+   - Return true if count is 0, false otherwise
+
+5. **isFull**:
+   - Return true if count equals capacity, false otherwise
+
+6. **size**:
+   - Return the current count of elements
+
+7. **display**:
+   - Iterate through the array from front to rear, printing each element
+
+## 4. Time and Space Complexity Analysis
+
+### Time Complexity:
+- Enqueue: O(1)
+- Dequeue: O(1)
+- Peek: O(1)
+- isEmpty: O(1)
+- isFull: O(1)
+- size: O(1)
+- display: O(n), where n is the number of elements in the queue
+
+### Space Complexity:
+- O(n), where n is the capacity of the queue
+
+## 5. Code Implementation
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Queue {
+    private:
+        int* arr;
+        int front, rear, capacity, count;
+    public:
+        Queue(int size = 5): front(0), rear(-1), capacity(size), count(0) {
+            arr = new int[capacity];
+        }
+
+        bool enqueue(int value) {
+            if (isFull()) {
+                cout << "Queue overflow! Cannot enqueue " << value << endl;
+                return false;
+            }
+            rear = (rear + 1) % capacity;
+            arr[rear] = value;
+            count++;
+            return true;
+        }
+
+        bool dequeue() {
+            if (isEmpty()) {
+                cout << "Queue underflow! Cannot dequeue" << endl;
+                return false;
+            }
+            front = (front + 1) % capacity;
+            count--;
+            return true;
+        }
+
+        int peek() const {
+            if (isEmpty()) {
+                cout << "Queue is empty" << endl;
+                return -1;
+            }
+            return arr[front];
+        }
+
+        bool isEmpty() const {
+            return count == 0;
+        }
+
+        bool isFull() const {
+            return count == capacity;
+        }
+
+        int size() const {
+            return count;
+        }
+
+        void display() const {
+            if (isEmpty()) {
+                cout << "Queue is empty" << endl;
+                return;
+            }
+            int i = front;
+            for (int k = 0; k < count; k++) {
+                cout << arr[i] << " ";
+                i = (i + 1) % capacity;
+            }
+            cout << endl;
+        }
+
+        ~Queue() {
+            delete[] arr;
+        }
+};
+
+int main() {
+    Queue q(5);
+
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+    q.enqueue(60);
+
+    cout << "Current queue: ";
+    q.display();
+
+    cout << "Front element: " << q.peek() << endl;
+
+    q.dequeue();
+    cout << "After dequeuing, current queue: ";
+    q.display();
+
+    return 0;
+}
+```
+
+## 6. Step-by-Step Code Breakdown
+
+### Constructor
+```cpp
+Queue(int size = 5): front(0), rear(-1), capacity(size), count(0) {
+    arr = new int[capacity];
+}
+```
+- Initializes `front` to 0, `rear` to -1 (empty queue)
+- Sets `capacity` to the given size (default 5)
+- Initializes `count` to 0 (empty queue)
+- Dynamically allocates an array of size `capacity`
+
+### Enqueue
+```cpp
+bool enqueue(int value) {
+    if (isFull()) {
+        cout << "Queue overflow! Cannot enqueue " << value << endl;
+        return false;
+    }
+    rear = (rear + 1) % capacity;
+    arr[rear] = value;
+    count++;
+    return true;
+}
+```
+- Checks if queue is full
+- If not full, updates `rear` using circular logic, adds the new value, and increments `count`
+- Returns true on success, false on overflow
+
+### Dequeue
+```cpp
+bool dequeue() {
+    if (isEmpty()) {
+        cout << "Queue underflow! Cannot dequeue" << endl;
+        return false;
+    }
+    front = (front + 1) % capacity;
+    count--;
+    return true;
+}
+```
+- Checks if queue is empty
+- If not empty, updates `front` using circular logic and decrements `count`
+- Returns true on success, false on underflow
+
+### Peek
+```cpp
+int peek() const {
+    if (isEmpty()) {
+        cout << "Queue is empty" << endl;
+        return -1;
+    }
+    return arr[front];
+}
+```
+- Checks if queue is empty
+- If not empty, returns the front element without removing it
+
+### Other Methods
+- `isEmpty()`: Returns true if `count` is 0
+- `isFull()`: Returns true if `count` equals `capacity`
+- `size()`: Returns `count`
+- `display()`: Iterates through the array from front to rear, printing each element
+
+### Destructor
+```cpp
+~Queue() {
+    delete[] arr;
+}
+```
+- Frees the dynamically allocated memory for the array
+
+## 7. Example Run with Visualization
+
+Let's visualize the queue operations in the main function:
+
+1. Initial state: [ ]
+2. After enqueuing 10, 20, 30, 40, 50: [10, 20, 30, 40, 50]
+3. Trying to enqueue 60: Queue overflow! [10, 20, 30, 40, 50]
+4. Peek operation: Returns 10
+5. After dequeuing: [20, 30, 40, 50]
+
+## 8. Common Pitfalls and Tips
+
+1. **Queue Overflow**: Always check for full queue before enqueuing.
+2. **Queue Underflow**: Always check for empty queue before dequeuing or peeking.
+3. **Memory Leaks**: Ensure proper deallocation of dynamic memory.
+4. **Circular Implementation**: Be careful with the circular logic to avoid off-by-one errors.
+5. **Type Safety**: Consider using templates for type-flexible implementation.
+
+## 9. Variants of Queue
+
+1. **Circular Queue**: Optimizes space usage (implemented in this example).
+2. **Double-ended Queue (Deque)**: Allows insertion and deletion at both ends.
+3. **Priority Queue**: Elements are dequeued based on priority rather than order of insertion.
+4. **Linked List Queue**: Implements queue using a linked list instead of an array.
+
+## 10. Real-world Applications
+
+1. **Task Scheduling**: Managing processes in operating systems.
+2. **Breadth-First Search**: Used in graph algorithms for traversal.
+3. **Buffering**: Managing data buffers in various applications (e.g., video streaming).
+4. **Printer Queue**: Managing print jobs in order of arrival.
+
+## 11. Practice Problems
+
+1. Implement a queue using two stacks.
+2. Design a circular queue with dynamic resizing.
+3. Implement a queue that supports getMin() operation in O(1) time.
+4. Create a program to reverse the first K elements of a queue.
+
+## 12. Conclusion
+
+Queues are fundamental data structures in computer science with numerous applications in algorithm design and system programming. Their FIFO principle makes them ideal for managing ordered data and processes. The circular array-based implementation provided here offers constant-time operations for enqueue and dequeue, making it efficient for most use cases. Understanding queue operations and their implementations is crucial for solving complex problems involving ordered processing and for optimizing code performance in various scenarios.
