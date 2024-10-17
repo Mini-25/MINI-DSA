@@ -1,2 +1,315 @@
-<h3><strong>Stack Data Structure</strong></h3><h4><strong>1. Concept of a Stack:</strong></h4><p>A <strong>stack</strong> is a linear data structure that follows the <strong>Last In, First Out (LIFO)</strong> principle. This means that the last element added to the stack will be the first one to be removed. Imagine a stack of plates in a cafeteria – you can only take the top plate, and if you want to add a new plate, you place it on top. The same principle applies to the stack data structure.</p><ul><li><strong>LIFO (Last In, First Out)</strong>: The element inserted last is the one removed first.</li></ul><h4><strong>2. Key Operations of a Stack:</strong></h4><p>A stack typically supports the following operations:</p><ul><li><strong>Push</strong>: Add an element to the top of the stack.</li><li><strong>Pop</strong>: Remove the top element from the stack.</li><li><strong>Top/Peek</strong>: Retrieve the top element of the stack without removing it.</li><li><strong>IsEmpty</strong>: Check if the stack is empty.</li><li><strong>IsFull</strong>: Check if the stack has reached its maximum capacity (in a fixed-size stack).</li><li><strong>Size</strong>: Get the number of elements currently in the stack.</li></ul><p>These operations allow us to efficiently manage data, especially when we want to keep track of the most recently added elements.</p><h4><strong>3. How a Stack Works:</strong></h4><p>Here’s how the basic operations work on a stack:</p><ul><li><p><strong>Push Operation</strong>:</p><ul><li>Add an element to the stack. This element is placed on top of the previous one.</li><li>Example: If the stack has [10, 20, 30], and we push <code>40</code>, the new stack becomes [10, 20, 30, 40].</li></ul></li><li><p><strong>Pop Operation</strong>:</p><ul><li>Remove the top element. The top pointer is moved to the next element in the stack.</li><li>Example: If the stack has [10, 20, 30, 40], and we pop, the top element <code>40</code> is removed, and the stack becomes [10, 20, 30].</li></ul></li><li><p><strong>Peek/Top Operation</strong>:</p><ul><li>Look at the top element without removing it. The stack remains unchanged.</li><li>Example: If the stack is [10, 20, 30], <code>peek()</code> would return <code>30</code>.</li></ul></li></ul><h4><strong>4. Real-World Examples of Stacks:</strong></h4><ol><li><p><strong>Undo/Redo Operations in Text Editors</strong>:</p><ul><li>Text editors (like Microsoft Word or Google Docs) use stacks to keep track of user actions. For example, when you type a sentence, each action (letter typed) is pushed onto a stack. When you press "Undo", the last action (the last letter typed) is popped from the stack.</li></ul></li><li><p><strong>Web Browsers (Back and Forward Navigation)</strong>:</p><ul><li>When you navigate through web pages, each page is stored on a stack. Clicking "Back" pops the current page and shows the previous one. The "Forward" button works by pushing a new page onto the stack.</li></ul></li><li><p><strong>Expression Evaluation in Compilers</strong>:</p><ul><li>Compilers often use stacks to evaluate arithmetic expressions and parse nested expressions. For example, when evaluating postfix expressions (like <code>2 3 +</code>), the operands are pushed onto the stack, and the operator applies to the topmost elements.</li></ul></li><li><p><strong>Call Stack in Programming</strong>:</p><ul><li>When a function is called in a program, information about that function is pushed onto a <strong>call stack</strong>. Once the function finishes, the information is popped from the stack. This is how programming languages manage function calls, especially in recursive functions.</li></ul></li></ol><h4><strong>5. Advantages of Using a Stack:</strong></h4><ul><li><strong>Simple and Efficient</strong>: Stacks provide a simple way to manage data when the order of access follows a strict LIFO rule.</li><li><strong>Memory Management</strong>: In some systems, stacks are used for memory management. For example, in function calls, local variables are stored in the call stack, which is automatically cleared when the function returns.</li><li><strong>Reversing Data</strong>: Since the last element inserted is the first to be retrieved, stacks can be used to reverse data (e.g., reversing a string).</li></ul><h4><strong>6. Limitations of a Stack:</strong></h4><ul><li><strong>Limited Access</strong>: You can only access the top element, so if you need to access elements in the middle or bottom, you’ll need to pop off all the elements above it.</li><li><strong>Fixed Size (in fixed-size stacks)</strong>: In some implementations, the stack has a fixed maximum size, limiting the number of elements it can store.</li></ul><h4><strong>7. Types of Stacks:</strong></h4><ul><li><strong>Static Stack</strong>: A fixed-size stack, often implemented using an array. This stack has a maximum size and cannot grow beyond that limit.</li><li><strong>Dynamic Stack</strong>: A stack that can grow or shrink dynamically, often implemented using a linked list. This avoids the size limitation but can be slightly slower due to dynamic memory allocation.</li></ul><h4><strong>8. Common Use Cases for Stacks in Software Development:</strong></h4><ul><li><strong>Depth-First Search (DFS) in Graphs</strong>: Stacks are used in the DFS algorithm to keep track of the nodes that need to be explored next.</li><li><strong>Parenthesis Matching in Compilers</strong>: Stacks help verify whether parentheses, brackets, and braces are correctly matched in expressions or code.</li><li><strong>Reversing Data</strong>: Stacks can be used to reverse strings or linked lists by pushing elements onto the stack and popping them off in reverse order.</li></ul><h4><strong>9. Other Important Concepts Related to Stacks:</strong></h4><ul><li><p><strong>Stack Overflow</strong>: This occurs when you try to push an element onto a stack that has reached its maximum capacity. In programming, this can also happen when too many function calls are placed on the call stack (e.g., infinite recursion).</p></li><li><p><strong>Stack Underflow</strong>: This occurs when you try to pop an element from an empty stack. It’s important to check if the stack is empty before attempting to pop.</p></li><li><p><strong>Recursion and Stacks</strong>: Recursion inherently uses stacks. Each recursive function call pushes information onto the call stack, and once a base case is reached, these function calls are popped off the stack as the recursion unwinds.</p></li></ul><hr><h3><strong>Summary:</strong></h3><ul><li><strong>Stack</strong>: A linear data structure that follows the LIFO (Last In, First Out) principle.</li><li><strong>Operations</strong>: Push (add element), Pop (remove element), Peek (view top element), IsEmpty, IsFull, and Size.</li><li><strong>Real-World Uses</strong>: Undo/redo in editors, browser history, function call management in programming (call stack), and DFS in graphs.</li><li><strong>Types</strong>: Static (fixed-size) and dynamic stacks.</li></ul>
+# Comprehensive Stack Documentation
 
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Data Structure Overview](#data-structure-overview)
+3. [Detailed Implementation Explanation](#detailed-implementation-explanation)
+4. [Time and Space Complexity Analysis](#time-and-space-complexity-analysis)
+5. [Code Implementation](#code-implementation)
+6. [Step-by-Step Code Breakdown](#step-by-step-code-breakdown)
+7. [Example Run with Visualization](#example-run-with-visualization)
+8. [Common Pitfalls and Tips](#common-pitfalls-and-tips)
+9. [Variants of Stack](#variants-of-stack)
+10. [Real-world Applications](#real-world-applications)
+11. [Practice Problems](#practice-problems)
+12. [Conclusion](#conclusion)
+
+## 1. Introduction
+
+A Stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle. It is an abstract data type with a bounded (predefined) capacity. It allows adding and removing elements in a particular order. Every time an element is added, it goes on the top of the stack, and the only element that can be removed is the element that was added last.
+
+### Key Concepts:
+- Elements are added to the top of the stack
+- Elements are removed from the top of the stack
+- Only the top element is accessible at any given time
+- Follows the Last-In-First-Out (LIFO) principle
+
+## 2. Data Structure Overview
+
+The Stack implementation consists of:
+
+1. **Array**: To store the elements of the stack.
+2. **Top**: An integer to keep track of the index of the topmost element.
+3. **Capacity**: The maximum number of elements the stack can hold.
+
+Key operations include:
+- Push: Add an element to the top of the stack
+- Pop: Remove the top element from the stack
+- Peek: View the top element without removing it
+- isEmpty: Check if the stack is empty
+- isFull: Check if the stack is full
+
+## 3. Detailed Implementation Explanation
+
+### Stack Class
+```cpp
+class Stack {
+private:
+    int* arr;
+    int top, capacity;
+public:
+    Stack(int size = 5);
+    bool push(int value);
+    bool pop();
+    int peek() const;
+    bool isEmpty() const;
+    bool isFull() const;
+    int size() const;
+    void display() const;
+    ~Stack();
+};
+```
+- `arr`: Dynamic array to store stack elements
+- `top`: Index of the topmost element (-1 if stack is empty)
+- `capacity`: Maximum number of elements the stack can hold
+- Constructor initializes the stack with a given capacity (default 5)
+- Destructor frees the dynamically allocated memory
+
+### Key Operations
+
+1. **Push**:
+   - Check if the stack is full
+   - If not full, increment top and add the new element
+   - Return true if successful, false if stack overflow
+
+2. **Pop**:
+   - Check if the stack is empty
+   - If not empty, decrement top
+   - Return true if successful, false if stack underflow
+
+3. **Peek**:
+   - Check if the stack is empty
+   - If not empty, return the element at the top
+   - Return -1 if stack is empty (assuming -1 is not a valid stack element)
+
+4. **isEmpty**:
+   - Return true if top is less than 0, false otherwise
+
+5. **isFull**:
+   - Return true if top is equal to capacity - 1, false otherwise
+
+6. **size**:
+   - Return top + 1 (since top is 0-indexed)
+
+7. **display**:
+   - Iterate through the array from 0 to top, printing each element
+
+## 4. Time and Space Complexity Analysis
+
+### Time Complexity:
+- Push: O(1)
+- Pop: O(1)
+- Peek: O(1)
+- isEmpty: O(1)
+- isFull: O(1)
+- size: O(1)
+- display: O(n), where n is the number of elements in the stack
+
+### Space Complexity:
+- O(n), where n is the capacity of the stack
+
+## 5. Code Implementation
+
+```cpp
+#include<iostream>
+using namespace std;
+
+class Stack {
+private:
+    int* arr;
+    int top, capacity;
+public:
+    Stack(int size = 5): top(-1), capacity(size) {
+        arr = new int[capacity];
+    }
+
+    bool push(int value) {
+        if (isFull()) {
+            cout << "Stack overflow! Cannot push " << value << endl;
+            return false;
+        }
+        arr[++top] = value;
+        return true;
+    }
+
+    bool pop() {
+        if (isEmpty()) {
+            cout << "Stack underflow! Cannot pop" << endl;
+            return false;
+        }
+        top--;
+        return true;
+    }
+
+    int peek() const {
+        if (isEmpty()) {
+            cout << "Stack is Empty" << endl;
+            return -1;
+        }
+        return arr[top];
+    }
+
+    bool isEmpty() const {
+        return top < 0;
+    }
+
+    bool isFull() const {
+        return top == capacity - 1;
+    }
+
+    int size() const {
+        return top + 1;
+    }
+
+    void display() const {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return;
+        }
+        for (int i = 0; i <= top; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    ~Stack() {
+        delete[] arr;
+    }
+};
+
+int main() {
+    Stack s(5);
+
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.push(60);
+
+    cout << "Current stack: ";
+    s.display();
+
+    cout << "Top element: " << s.peek() << endl;
+
+    s.pop();
+    cout << "After popping, current stack: ";
+    s.display();
+
+    return 0;
+}
+```
+
+## 6. Step-by-Step Code Breakdown
+
+### Constructor
+```cpp
+Stack(int size = 5): top(-1), capacity(size) {
+    arr = new int[capacity];
+}
+```
+- Initializes `top` to -1 (empty stack)
+- Sets `capacity` to the given size (default 5)
+- Dynamically allocates an array of size `capacity`
+
+### Push
+```cpp
+bool push(int value) {
+    if (isFull()) {
+        cout << "Stack overflow! Cannot push " << value << endl;
+        return false;
+    }
+    arr[++top] = value;
+    return true;
+}
+```
+- Checks if stack is full
+- If not full, increments `top` and adds the new value
+- Returns true on success, false on overflow
+
+### Pop
+```cpp
+bool pop() {
+    if (isEmpty()) {
+        cout << "Stack underflow! Cannot pop" << endl;
+        return false;
+    }
+    top--;
+    return true;
+}
+```
+- Checks if stack is empty
+- If not empty, decrements `top`
+- Returns true on success, false on underflow
+
+### Peek
+```cpp
+int peek() const {
+    if (isEmpty()) {
+        cout << "Stack is Empty" << endl;
+        return -1;
+    }
+    return arr[top];
+}
+```
+- Checks if stack is empty
+- If not empty, returns the top element without removing it
+
+### Other Methods
+- `isEmpty()`: Returns true if `top` is less than 0
+- `isFull()`: Returns true if `top` equals `capacity - 1`
+- `size()`: Returns `top + 1`
+- `display()`: Iterates through the array, printing each element
+
+### Destructor
+```cpp
+~Stack() {
+    delete[] arr;
+}
+```
+- Frees the dynamically allocated memory for the array
+
+## 7. Example Run with Visualization
+
+Let's visualize the stack operations in the main function:
+
+1. Initial state: [ ]
+2. After pushing 10, 20, 30, 40, 50: [10, 20, 30, 40, 50]
+3. Trying to push 60: Stack overflow! [10, 20, 30, 40, 50]
+4. Peek operation: Returns 50
+5. After popping: [10, 20, 30, 40]
+
+## 8. Common Pitfalls and Tips
+
+1. **Stack Overflow**: Always check for full stack before pushing.
+2. **Stack Underflow**: Always check for empty stack before popping or peeking.
+3. **Memory Leaks**: Ensure proper deallocation of dynamic memory.
+4. **Boundary Conditions**: Be careful with off-by-one errors in array indexing.
+5. **Type Safety**: Consider using templates for type-flexible implementation.
+
+## 9. Variants of Stack
+
+1. **Dynamic Stack**: Automatically resizes when full.
+2. **Linked List Stack**: Implements stack using a linked list instead of an array.
+3. **Circular Stack**: Uses a circular array to optimize space.
+4. **Thread-Safe Stack**: Implements concurrency control for multi-threaded applications.
+
+## 10. Real-world Applications
+
+1. **Function Call Stack**: Manages function calls and local variables in program execution.
+2. **Expression Evaluation**: Used in calculators and compilers for evaluating expressions.
+3. **Undo Mechanism**: Implements undo functionality in text editors and graphic software.
+4. **Backtracking Algorithms**: Used in maze solving, puzzle solving, and game AI.
+
+## 11. Practice Problems
+
+1. Implement a function to reverse a string using a stack.
+2. Create a program to check if parentheses in an expression are balanced using a stack.
+3. Implement a stack that supports getMin() operation in O(1) time.
+4. Design a queue using two stacks.
+
+## 12. Conclusion
+
+Stacks are fundamental data structures in computer science with a wide range of applications. Their simplicity and efficiency make them indispensable in many algorithms and system designs. Understanding stack operations and their implementations is crucial for solving complex problems and optimizing code performance.
+
+The array-based implementation provided here offers constant-time operations for push, pop, and peek, making it efficient for most use cases. However, it's important to consider the fixed-size limitation and explore other implementations like dynamic or linked-list-based stacks for scenarios requiring more flexibility.
