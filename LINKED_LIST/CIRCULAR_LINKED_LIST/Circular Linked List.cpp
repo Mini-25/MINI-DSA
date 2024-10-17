@@ -1,126 +1,131 @@
-//Doubly linked list
-#include<iostream>
+#include <iostream>
 using namespace std;
-struct Node{
-    int data;
-    Node* next;
-    Node* prev;
-    Node(int x): data(x), next(nullptr), prev(nullptr){}
+
+struct Node {
+    int data;     
+    Node* next;     
+    Node(int value) : data(value), next(nullptr) {}
 };
-class DoublyLinkedList{
-    Node* head;
-    public:
-    DoublyLinkedList():head(nullptr){}
-    void insertAtHead(int x){
-        Node* temp = new Node(x);
-        if(head == nullptr){
-            head = temp;
+
+// CircularLinkedList class definition
+class CircularLinkedList {
+private:
+    Node* head;  
+
+public:
+    CircularLinkedList() : head(nullptr) {}
+
+    
+    void insertAtBeginning(int value) {
+        Node* newNode = new Node(value);
+        if (head == nullptr) {
+            head = newNode;
+            head->next = head; 
+        } else {
+            Node* temp = head;
+            while (temp->next != head) {
+                temp = temp->next;
+            }
+            newNode->next = head;
+            temp->next = newNode;
+            head = newNode;
+        }
+    }
+
+    // Function to insert a node at the end of the list
+    void insertAtEnd(int value) {
+        Node* newNode = new Node(value);
+        if (head == nullptr) {
+            head = newNode;
+            head->next = head; 
+        } else {
+            Node* temp = head;
+            while (temp->next != head) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+            newNode->next = head;
+        }
+    }
+
+    // Function to delete the first node of the list
+    void deleteFromBeginning() {
+        if (head == nullptr) {
+            cout << "List is empty, nothing to delete." << endl;
             return;
         }
-        temp->next = head;
-        head->prev = temp;
-        head = temp;
+        if (head->next == head) {
+            delete head;
+            head = nullptr;
+        } else {
+            Node* temp = head;
+            while (temp->next != head) {
+                temp = temp->next;
+            }
+            Node* oldHead = head;
+            head = head->next;
+            temp->next = head;
+            delete oldHead;
+        }
     }
-    void insertAtTail(int x){
-        Node* temp = new Node(x);
-        if(head == nullptr){
-            head = temp;
+
+    // Function to delete the last node of the list
+    void deleteFromEnd() {
+        if (head == nullptr) {
+            cout << "List is empty, nothing to delete." << endl;
             return;
         }
-        Node* curr = head;
-        while(curr->next!= nullptr){
-            curr = curr->next;
+        if (head->next == head) {
+            delete head;
+            head = nullptr;
+        } else {
+            Node* temp = head;
+            Node* prev = nullptr;
+            while (temp->next != head) {
+                prev = temp;
+                temp = temp->next;
+            }
+            prev->next = head;
+            delete temp;
         }
-        curr->next = temp;
-        temp->prev = curr;
     }
-    void insertAtPos(int x, int pos){
-        Node* temp = new Node(x);
-        if(head == nullptr){
-            head = temp;
-            return;
-        }
-        Node* curr = head;
-        for(int i = 1; i < pos; i++){
-            curr = curr->next;
-        }
-        temp->next = curr->next;
-        temp->prev = curr;
-        curr->next->prev = temp;
-        curr->next = temp;
-    }
-    void deleteAtHead(){
-        if(head == nullptr){
+
+    // Function to display the list
+    void displayList() {
+        if (head == nullptr) {
+            cout << "The list is empty." << endl;
             return;
         }
         Node* temp = head;
-        head = head->next;
-        head->prev = nullptr;
-        delete temp;
-    }
-    void deleteAtTail(){
-        if(head == nullptr){
-            return;
-        }
-        Node* curr = head;
-        while(curr->next!= nullptr){
-            curr = curr->next;
-        }
-        curr->prev->next = nullptr;
-        delete curr;
-    }
-    void deleteAtPos(int pos){
-        if(head == nullptr){
-            return;
-        }
-        Node* curr = head;
-        for(int i = 1; i < pos; i++){
-            curr = curr->next;
-        }
-        curr->prev->next = curr->next;
-        curr->next->prev = curr->prev;
-        delete curr;
-    }
-    void display(){
-        Node* curr = head;
-        while(curr!= nullptr){
-            cout<<curr->data<<" ";
-            curr = curr->next;
-        }
-        cout<<endl;
-    }
-    void deleteAll(){
-        Node* curr = head;
-        while(curr!= nullptr){
-            Node* temp = curr;
-            curr = curr->next;
-            delete temp;
-        }
-        head = nullptr;
-    }
-    ~DoublyLinkedList(){
-        deleteAll();
+        do {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        } while (temp != head);
+        cout << "head" << endl;
     }
 };
-int main(){
-    DoublyLinkedList dll;
-    dll.insertAtHead(1);
-    dll.insertAtHead(2);
-    dll.insertAtHead(3);
-    dll.insertAtHead(4);
-    dll.insertAtHead(5);
-    dll.display();
-    dll.insertAtTail(6);
-    dll.insertAtTail(7);
-    dll.insertAtTail(8);
-    dll.insertAtTail(9);
-    dll.display();
-    dll.insertAtPos(10, 3);
-    dll.display();
-    dll.deleteAtHead();
-    dll.display();
-    dll.deleteAtTail();
-    dll.display();
-    dll.deleteAll(  );
-    dll.display();
+
+int main() {
+    CircularLinkedList list;
+
+    // Insert nodes
+    list.insertAtBeginning(10);
+    list.insertAtBeginning(5);
+    list.insertAtEnd(15);
+    list.insertAtEnd(20);
+
+    // Display the list
+    cout << "Circular Linked List after insertions: ";
+    list.displayList();
+
+    // Delete nodes
+    list.deleteFromBeginning();
+    cout << "Circular Linked List after deleting from the beginning: ";
+    list.displayList();
+
+    list.deleteFromEnd();
+    cout << "Circular Linked List after deleting from the end: ";
+    list.displayList();
+
+    return 0;
 }
