@@ -102,11 +102,7 @@ int getSize() const {
 }
 ```
 - Returns the current number of elements in the array
-
-### Improvements
-- Added bounds checking in `operator[]`
-- Made `getSize` a const method
-- Fixed the `resize` method to correctly update the capacity
+---
 
 ## 3. Queue Class
 
@@ -201,9 +197,7 @@ bool isEmpty() {
 ```
 - Checks if the queue is empty
 
-### Improvements
-- Added error handling in `dequeue` and `getFront` methods
-- Improved handling of the case when the queue becomes empty after dequeuing
+---
 
 ## 4. Graph Class
 
@@ -283,9 +277,7 @@ void printGraph() {
 ```
 - Prints the adjacency list representation of the graph
 
-### Improvements
-- Added error checking for invalid vertex indices in `addEdge_Undirected`
-- Implemented `hasEdge` method to check for the existence of an edge
+---
 
 ## 5. Main Function
 
@@ -359,5 +351,4 @@ g.printGraph();
 - Graph throws out_of_range exception for invalid vertex indices
 
 ## 11. Conclusion
-
-This improved implementation provides robust and efficient implementations of DynamicArray, Queue, and Graph data structures. The added error handling and improved memory management make these classes more reliable for use in various applications. Future improvements could focus on making the classes more generic and adding additional functionality, particularly for the Graph class.
+This implementation showcases the power and flexibility of custom data structures. The DynamicArray provides efficient dynamic storage, the Queue offers fast FIFO operations, and the Graph represents complex relationships between entities.
