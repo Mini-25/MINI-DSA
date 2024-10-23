@@ -7,4 +7,4 @@ Additionally, if you notice any topics related to Data Structures and Algorithms
 
 Your contributions help make this resource better for everyone! 😊
 
-You can contact me at: [mininature7@duck.com] or [+923245768392]
+You can contact me at: [mininature7@duck.com]
