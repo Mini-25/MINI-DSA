@@ -50,6 +50,14 @@ public:
         }
         cout << endl;
     }
+    int search(int element) {
+    for (int i = 0; i < size; i++) {
+        if (array[i] == element) {
+            return i;
+        }
+    }
+    return -1;  // Element not found
+}
 };
 
 
@@ -73,5 +81,10 @@ int main() {
     myList.print();
     //List: 10 20 40 50
 
+    // Search operations
+    int index = myList.search(40);
+    if (index != -1) {
+        cout << "Element 40 found at index: " << index << endl;
+    }
     return 0;
 }
