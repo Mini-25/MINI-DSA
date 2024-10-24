@@ -274,11 +274,145 @@ void printGraph() {
         cout << endl;
     }
 }
+
+
 ```
 - Prints the adjacency list representation of the graph
 
 ---
+# Graph Traversal Algorithms
 
+## Breadth-First Search (BFS)
+
+### Overview
+BFS traverses the graph level by level, visiting all nodes at the current depth before moving to nodes at the next depth level.
+
+### Algorithm Steps
+1. Start at a given vertex (root node)
+2. Visit the current vertex and mark it as visited
+3. Add all unvisited adjacent vertices to a queue
+4. Take the next vertex from the queue and repeat steps 2-3
+5. Continue until the queue is empty
+
+### Implementation Details
+```cpp
+void BFS(int start) {
+    // Create visited array
+    bool* visited = new bool[V];
+    // Initialize queue
+    Queue queue;
+    // Mark start vertex as visited and enqueue it
+    visited[start] = true;
+    queue.enqueue(start);
+    
+    while(!queue.isEmpty()) {
+        // Process current vertex
+        int vertex = queue.getFront();
+        queue.dequeue();
+        
+        // Add all unvisited neighbors to queue
+        for(each adjacent vertex) {
+            if(!visited[adjacent]) {
+                visited[adjacent] = true;
+                queue.enqueue(adjacent);
+            }
+        }
+    }
+}
+```
+
+### Example Walkthrough
+Given graph: 0 -- 1 -- 3
+            |     |
+            2     4
+
+Starting from vertex 0:
+1. Visit 0, add 1,2 to queue
+2. Visit 1, add 3,4 to queue
+3. Visit 2
+4. Visit 3
+5. Visit 4
+
+Output: 0 1 2 3 4
+
+### Time and Space Complexity
+- Time: O(V + E) where V is vertices and E is edges
+- Space: O(V) for visited array and queue
+
+---
+
+## Depth-First Search (DFS)
+
+### Overview
+DFS traverses the graph by exploring as far as possible along each branch before backtracking.
+
+### Algorithm Steps
+1. Start at a given vertex
+2. Visit and mark the current vertex as visited
+3. Recursively visit any unvisited adjacent vertex
+4. Backtrack when no unvisited adjacent vertices remain
+5. Continue until all vertices are visited
+
+### Implementation Details
+```cpp
+void DFS(int start) {
+    // Create visited array
+    bool* visited = new bool[V];
+    // Start recursive DFS
+    DFSUtil(start, visited);
+}
+
+void DFSUtil(int vertex, bool visited[]) {
+    // Mark current vertex as visited
+    visited[vertex] = true;
+    
+    // Recursively visit all adjacent vertices
+    for(each adjacent vertex) {
+        if(!visited[adjacent]) {
+            DFSUtil(adjacent, visited);
+        }
+    }
+}
+```
+
+### Example Walkthrough
+Using same graph: 0 -- 1 -- 3
+                 |     |
+                 2     4
+
+Starting from vertex 0:
+1. Visit 0
+2. Visit 1
+3. Visit 3
+4. Backtrack to 1
+5. Visit 4
+6. Backtrack to 0
+7. Visit 2
+
+Output: 0 1 3 4 2
+
+### Time and Space Complexity
+- Time: O(V + E) where V is vertices and E is edges
+- Space: O(V) for visited array and recursion stack
+
+### Key Differences Between BFS and DFS
+
+1. Traversal Pattern
+   - BFS: Level by level (breadth-wise)
+   - DFS: Branch by branch (depth-wise)
+
+2. Data Structure Used
+   - BFS: Queue
+   - DFS: Recursion stack (or explicit stack)
+
+3. Common Use Cases
+   - BFS: Finding shortest paths, level-order processing
+   - DFS: Topological sorting, cycle detection, maze solving
+
+4. Memory Usage
+   - BFS: More memory for wide graphs
+   - DFS: More memory for deep graphs
+     
 ## 5. Main Function
 
 The main function demonstrates the usage of the Graph class:
