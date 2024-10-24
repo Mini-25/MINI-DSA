@@ -1,8 +1,12 @@
 #include <iostream>
 using namespace std;
 
-//@brief Performs Insertion Sort on the given array.
+void swap(int& a, int& b){
+    int temp = a;
+    a = b;
+    b = temp;
 
+//@brief Performs Insertion Sort on the given array.
 void insertionSort(int arr[], int n) {
     for (int i = 1; i < n; i++) {
         int key = arr[i];
@@ -16,7 +20,18 @@ void insertionSort(int arr[], int n) {
         arr[j + 1] = key;
     }
 }
-
+/*
+Alternative Insertion Sort Algorithm:
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        for(int j = i; j > = 1;j--){
+            if(arr[j-1] > arr[j]){
+                swap(arr[j-1], arr[j]);
+            }
+        }
+    }
+}
+*/
 
 //@brief Displays the contents of the array.
  
